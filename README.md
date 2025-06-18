@@ -4,7 +4,7 @@ Projetos de melhoria para otimização de tempo e eficiência das funções que 
 
 Tem basicamente dois projetos que eu gostaria de dar início, o primeiro dele mais imediato e o outro posso deixar em segundo plano
 
-**PRIMEIRO PROJETO**
+:point_right:	**PRIMEIRO PROJETO**
 
 Uso algumas planilhas para enviar orçamento aos clientes, algumas planilhas para avaliar as compras que as revendas fizeram ao longo dos anos, outras para saber quantos licenciamentos foram feitos ao longo dos anos, etc.
 
@@ -25,7 +25,7 @@ Condições:
 - as páginas devem funcionar mesmo com meu PC desligado;
 - o banco de dados deve ser de fácil manutenção.
 
-**SEGUNDO PROJETO**
+:point_right:	**SEGUNDO PROJETO**
 
 A cada 6 meses, faço a atualização dos cadastros das revendas, então confiro manualmente mais de 170 CNPJs para saber se houve alguma alteração na Razão Social, Nome Fantasia, endereço completo e Situação Cadastral.
 
