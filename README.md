@@ -1,8 +1,7 @@
 # Projetos
-Projetos de melhoria para otimização de tempo e eficiência das funções que exerço no trabalho
+:clock6:	Projetos de melhoria para otimização de tempo e eficiência das funções que exerço no trabalho
 
-
-Tem basicamente dois projetos que eu gostaria de dar início, o primeiro dele mais imediato e o outro posso deixar em segundo plano
+:black_nib:	Tem basicamente dois projetos que eu gostaria de dar início, o primeiro dele mais imediato e o outro posso deixar em segundo plano
 
 :point_right:	**PRIMEIRO PROJETO**
 
