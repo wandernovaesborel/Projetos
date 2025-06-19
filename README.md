@@ -1,4 +1,5 @@
 # Projetos
+
 :clock6:	Projetos de melhoria para otimização de tempo e eficiência das funções que exerço no trabalho
 
 :black_nib:	Tem basicamente dois projetos que eu gostaria de dar início, o primeiro dele mais imediato e o outro posso deixar em segundo plano
@@ -24,7 +25,7 @@ Condições:
 - as páginas devem funcionar mesmo com meu PC desligado;
 - o banco de dados deve ser de fácil manutenção.
 
-Coloquei um arquivo chamado "Exemplo de calculadora para orçamento" para mostrar uma das planilhas que vai ter uma adaptação para uma página de internet. Não acho que vou ter problemas para fazer formulários, o problema inicial no momento é só entender como montar o banco para saber como guardar / editar / excluir as informações. Alterei o nome das revendas só por ser dados sensíveis, coloquei nomes de cidades
+Coloquei um arquivo chamado "Exemplo de calculadora para orçamento" para mostrar uma das planilhas que vai ter uma adaptação para uma página de internet. Não acho que vou ter problemas para fazer formulários, o problema inicial no momento é só entender como montar o banco para saber como guardar / editar / excluir as informações. Alterei o nome das revendas só por ser dados sensíveis, coloquei nomes de cidades.
 
 :point_right:	**SEGUNDO PROJETO**
 
@@ -34,6 +35,7 @@ Acesso o link https://solucoes.receita.fazenda.gov.br/servicos/cnpjreva/cnpjreva
 
 Preencho o CNPJ, faço a verificação "Sou humano" e clico em consultar.
 
+Tem alguns erros de protugês também que o próprio GitHub "corrigiu".
 Se precisar, pode me mandar mensagem no WhatsApp.
 
 
