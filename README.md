@@ -24,6 +24,8 @@ Condições:
 - as páginas devem funcionar mesmo com meu PC desligado;
 - o banco de dados deve ser de fácil manutenção.
 
+Coloquei um arquivo chamado "Exemplo de calculadora para orçamento" para mostrar uma das planilhas que vai ter uma adaptação para uma página de internet. Não acho que vou ter problemas para fazer formulários, o problema inicial no momento é só entender como montar o banco para saber como guardar / editar / excluir as informações. Alterei o nome das revendas só por ser dados sensíveis, coloquei nomes de cidades
+
 :point_right:	**SEGUNDO PROJETO**
 
 A cada 6 meses, faço a atualização dos cadastros das revendas, então confiro manualmente mais de 170 CNPJs para saber se houve alguma alteração na Razão Social, Nome Fantasia, endereço completo e Situação Cadastral.
@@ -31,6 +33,8 @@ A cada 6 meses, faço a atualização dos cadastros das revendas, então confiro
 Acesso o link https://solucoes.receita.fazenda.gov.br/servicos/cnpjreva/cnpjreva_solicitacao.asp.
 
 Preencho o CNPJ, faço a verificação "Sou humano" e clico em consultar.
+
+Se precisar, pode me mandar mensagem no WhatsApp.
 
 
 
