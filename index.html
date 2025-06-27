@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistema de Controle de Pedidos</title>
+  <style>
+    /* Estilos Gerais */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    /* Menu Responsivo */
+    .navbar {
+      background-color: #333;
+      overflow: hidden;
+    }
+
+    .navbar a {
+      float: left;
+      display: block;
+      color: #fff;
+      text-align: center;
+      padding: 14px 20px;
+      text-decoration: none;
+    }
+
+    .navbar a:hover {
+      background-color: #ddd;
+      color: black;
+    }
+
+    .menu-icon {
+      display: none;
+      float: right;
+      font-size: 30px;
+      padding: 14px 20px;
+      cursor: pointer;
+      color: white;
+    }
+
+    .nav-links {
+      display: flex;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .menu-icon {
+        display: block;
+      }
+    }
+
+    /* Formulários e Tabelas */
+    form {
+      margin-bottom: 20px;
+      background-color: #fff;
+      padding: 20px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+
+    form label, form input {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    form input[type="text"], form input[type="number"] {
+      width: 100%;
+      padding: 8px;
+      box-sizing: border-box;
+    }
+
+    form button {
+      padding: 10px 20px;
+      background-color: #333;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    table {
+      width: 100%;
+      margin-top: 20px;
+      border-collapse: collapse;
+      background-color: white;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+
+    table th, table td {
+      padding: 10px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    table th {
+      background-color: #333;
+      color: white;
+    }
+
+    /* Botões */
+    .actions {
+      margin: 20px 0;
+      text-align: center;
+    }
+
+    .actions button {
+      padding: 10px 20px;
+      background-color: #333;
+      color: white;
+      border: none;
+      cursor: pointer;
+      margin-right: 10px;
+      border-radius: 5px;
+    }
+
+    .actions input {
+      padding: 10px 20px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    /* Estilo da seção de visualização de dados */
+    .output-section {
+      margin-top: 20px;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+
+    .output-section h3 {
+      margin-bottom: 15px;
+      color: #333;
+    }
+
+    .output-section p {
+      margin-bottom: 10px;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Menu -->
+  <nav class="navbar">
+    <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#clients">Clientes</a></li>
+      <li><a href="#products">Produtos</a></li>
+      <li><a href="#orders">Pedidos</a></li>
+      <li><a href="#reports">Relatórios</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <h1>Sistema de Controle de Pedidos</h1>
+
+    <!-- Seção de Clientes -->
+    <section id="clients">
+      <h2>Cadastro de Clientes</h2>
+      <form id="clientForm">
+        <label for="clientName">Nome do Cliente:</label>
+        <input type="text" id="clientName" required>
+        <label for="clientEmail">Email:</label>
+        <input type="text" id="clientEmail" required>
+        <label for="clientPhone">Telefone:</label>
+        <input type="text" id="clientPhone" required>
+        <button type="submit">Adicionar Cliente</button>
+      </form>
+      <table id="clientTable">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Telefone</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+    <!-- Seção de Produtos -->
+    <section id="products">
+      <h2>Cadastro de Produtos</h2>
+      <form id="productForm">
+        <label for="productName">Nome do Produto:</label>
+        <input type="text" id="productName" required>
+        <label for="productPrice">Preço:</label>
+        <input type="number" id="productPrice" required>
+        <label for="productStock">Estoque:</label>
+        <input type="number" id="productStock" required>
+        <button type="submit">Adicionar Produto</button>
+      </form>
+      <table id="productTable">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Preço</th>
+            <th>Estoque</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+    <!-- Seção de Pedidos -->
+    <section id="orders">
+      <h2>Criar Pedido</h2>
+      <form id="orderForm">
+        <label for="orderClient">Cliente:</label>
+        <select id="orderClient"></select>
+        <label for="orderProduct">Produto:</label>
+        <select id="orderProduct"></select>
+        <label for="orderQuantity">Quantidade:</label>
+        <input type="number" id="orderQuantity" required>
+        <button type="submit">Adicionar Pedido</button>
+      </form>
+      <table id="orderTable">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Cliente</th>
+            <th>Produto</th>
+            <th>Valor Unitário</th>
+            <th>Quantidade</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+    <!-- Seção de Relatórios -->
+    <section id="reports">
+      <h2>Relatórios de Vendas</h2>
+      <button onclick="generateSalesReport()">Gerar Relatório</button>
+      <table id="reportTable">
+        <thead>
+          <tr>
+            <th>Produto</th>
+            <th>Quantidade Vendida</th>
+            <th>Total Vendido</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+    <!-- Botões para Backup, Importar, Reset e Imprimir Dados -->
+    <div class="actions">
+      <button onclick="backupLocalStorage()">Gerar Backup</button>
+      <input type="file" id="importFile" accept=".json" onchange="importLocalStorage(event)">
+      <button onclick="resetLocalStorage()">Resetar LocalStorage</button>
+      <button onclick="printLocalStorage()">Imprimir Dados</button>
+    </div>
+
+    <!-- Seção de Saída de Dados -->
+    <div class="output-section" id="outputSection">
+      <!-- Dados serão exibidos aqui -->
+    </div>
+  </div>
+
+  <script>
+    // Inicializa dados no localStorage
+    function initializeData() {
+      if (!localStorage.getItem('clients')) {
+        localStorage.setItem('clients', JSON.stringify([]));
+      }
+      if (!localStorage.getItem('products')) {
+        localStorage.setItem('products', JSON.stringify([]));
+      }
+      if (!localStorage.getItem('orders')) {
+        localStorage.setItem('orders', JSON.stringify([]));
+      }
+      updateTables();
+    }
+
+    // Adicionar Cliente
+    document.getElementById('clientForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const clients = JSON.parse(localStorage.getItem('clients'));
+      const newClient = {
+        id: clients.length + 1,
+        name: document.getElementById('clientName').value,
+        email: document.getElementById('clientEmail').value,
+        phone: document.getElementById('clientPhone').value
+      };
+      clients.push(newClient);
+      localStorage.setItem('clients', JSON.stringify(clients));
+      updateTables();
+      this.reset();
+    });
+
+    // Adicionar Produto
+    document.getElementById('productForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const products = JSON.parse(localStorage.getItem('products'));
+      const newProduct = {
+        id: products.length + 1,
+        name: document.getElementById('productName').value,
+        price: parseFloat(document.getElementById('productPrice').value),
+        stock: parseInt(document.getElementById('productStock').value)
+      };
+      products.push(newProduct);
+      localStorage.setItem('products', JSON.stringify(products));
+      updateTables();
+      this.reset();
+    });
+
+    // Adicionar Pedido
+    document.getElementById('orderForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const orders = JSON.parse(localStorage.getItem('orders'));
+      const clients = JSON.parse(localStorage.getItem('clients'));
+      const products = JSON.parse(localStorage.getItem('products'));
+
+      const selectedClientId = parseInt(document.getElementById('orderClient').value);
+      const selectedProductId = parseInt(document.getElementById('orderProduct').value);
+      const quantity = parseInt(document.getElementById('orderQuantity').value);
+
+      const product = products.find(p => p.id === selectedProductId);
+      if (product.stock < quantity) {
+        alert('Estoque insuficiente!');
+        return;
+      }
+
+      const newOrder = {
+        id: orders.length + 1,
+        clientId: selectedClientId,
+        productId: selectedProductId,
+        unitPrice: product.price,
+        quantity: quantity,
+        total: product.price * quantity
+      };
+
+      // Atualizar estoque
+      product.stock -= quantity;
+      localStorage.setItem('products', JSON.stringify(products));
+
+      orders.push(newOrder);
+      localStorage.setItem('orders', JSON.stringify(orders));
+      updateTables();
+      this.reset();
+    });
+
+    // Atualizar Tabelas
+    function updateTables() {
+      const clients = JSON.parse(localStorage.getItem('clients'));
+      const products = JSON.parse(localStorage.getItem('products'));
+      const orders = JSON.parse(localStorage.getItem('orders'));
+
+      const clientTable = document.querySelector('#clientTable tbody');
+      const productTable = document.querySelector('#productTable tbody');
+      const orderTable = document.querySelector('#orderTable tbody');
+
+      // Atualizar Tabela de Clientes
+      clientTable.innerHTML = '';
+      clients.forEach(client => {
+        clientTable.innerHTML += `<tr>
+          <td>${client.id}</td>
+          <td>${client.name}</td>
+          <td>${client.email}</td>
+          <td>${client.phone}</td>
+        </tr>`;
+      });
+
+      // Atualizar Tabela de Produtos
+      productTable.innerHTML = '';
+      products.forEach(product => {
+        productTable.innerHTML += `<tr>
+          <td>${product.id}</td>
+          <td>${product.name}</td>
+          <td>R$ ${product.price.toFixed(2)}</td>
+          <td>${product.stock}</td>
+        </tr>`;
+      });
+
+      // Atualizar Tabela de Pedidos
+      orderTable.innerHTML = '';
+      orders.forEach(order => {
+        const client = clients.find(c => c.id === order.clientId);
+        const product = products.find(p => p.id === order.productId);
+        orderTable.innerHTML += `<tr>
+          <td>${order.id}</td>
+          <td>${client.name}</td>
+          <td>${product.name}</td>
+          <td>${product.price.toFixed(2)}</td>
+          <td>${order.quantity}</td>
+          <td>R$ ${order.total.toFixed(2)}</td>
+        </tr>`;
+      });
+
+      // Atualizar selects de clientes e produtos no form de pedido
+      const clientSelect = document.getElementById('orderClient');
+      const productSelect = document.getElementById('orderProduct');
+
+      clientSelect.innerHTML = '';
+      productSelect.innerHTML = '';
+
+      clients.forEach(client => {
+        clientSelect.innerHTML += `<option value="${client.id}">${client.name}</option>`;
+      });
+
+      products.forEach(product => {
+        productSelect.innerHTML += `<option value="${product.id}">${product.name}</option>`;
+      });
+    }
+
+    // Gerar Relatório de Vendas
+    function generateSalesReport() {
+      const orders = JSON.parse(localStorage.getItem('orders'));
+      const products = JSON.parse(localStorage.getItem('products'));
+      const reportTable = document.querySelector('#reportTable tbody');
+
+      const salesReport = {};
+
+      orders.forEach(order => {
+        if (!salesReport[order.productId]) {
+          salesReport[order.productId] = { quantity: 0, totalSales: 0 };
+        }
+        salesReport[order.productId].quantity += order.quantity;
+        salesReport[order.productId].totalSales += order.total;
+      });
+
+      reportTable.innerHTML = '';
+      for (const productId in salesReport) {
+        const product = products.find(p => p.id == productId);
+        const report = salesReport[productId];
+        reportTable.innerHTML += `<tr>
+          <td>${product.name}</td>
+          <td>${report.quantity}</td>
+          <td>R$ ${report.totalSales.toFixed(2)}</td>
+        </tr>`;
+      }
+    }
+
+    // Backup LocalStorage
+    function backupLocalStorage() {
+      const data = {
+        clients: JSON.parse(localStorage.getItem('clients')),
+        products: JSON.parse(localStorage.getItem('products')),
+        orders: JSON.parse(localStorage.getItem('orders'))
+      };
+      const dataStr = JSON.stringify(data);
+      const blob = new Blob([dataStr], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "backup.json";
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    // Importar Backup para LocalStorage
+    function importLocalStorage(event) {
+      const file = event.target.files[0];
+      const reader = new FileReader();
+      reader.onload = function(event) {
+        const data = JSON.parse(event.target.result);
+        localStorage.setItem('clients', JSON.stringify(data.clients));
+        localStorage.setItem('products', JSON.stringify(data.products));
+        localStorage.setItem('orders', JSON.stringify(data.orders));
+        updateTables();
+        alert("Backup importado com sucesso!");
+      };
+      reader.readAsText(file);
+    }
+
+    // Resetar LocalStorage
+    function resetLocalStorage() {
+      localStorage.clear();
+      initializeData();
+      alert("LocalStorage foi resetado!");
+    }
+
+    // Imprimir dados do LocalStorage
+    function printLocalStorage() {
+      const clients = JSON.parse(localStorage.getItem('clients'));
+      const products = JSON.parse(localStorage.getItem('products'));
+      const valorunit = JSON.parse(localStorage.getItem('valorunit'));
+      const orders = JSON.parse(localStorage.getItem('orders'));
+
+      const outputSection = document.getElementById('outputSection');
+      outputSection.innerHTML = '';
+
+      let outputHTML = '<h3>Clientes</h3>';
+      clients.forEach(client => {
+        outputHTML += `<p>ID: ${client.id} | Nome: ${client.name} | Email: ${client.email} | Telefone: ${client.phone}</p>`;
+      });
+
+      outputHTML += '<h3>Produtos</h3>';
+      products.forEach(product => {
+        outputHTML += `<p>ID: ${product.id} | Nome: ${product.name} | Preço: R$ ${product.price.toFixed(2)} | Estoque: ${product.stock}</p>`;
+      });
+
+      outputHTML += '<h3>Pedidos</h3>';
+      orders.forEach(order => {
+        const client = clients.find(c => c.id === order.clientId);
+        const product = products.find(p => p.id === order.productId);
+        outputHTML += `<p>ID: ${order.id} | Cliente: ${client.name} | Produto: ${product.name} | Valor unitário: ${product.price.toFixed(2)} | Quantidade: ${order.quantity} | Total: R$ ${order.total.toFixed(2)}</p>`;
+      });
+
+      outputSection.innerHTML = outputHTML;
+    }
+
+    // Alternar Menu no modo Responsivo
+    function toggleMenu() {
+      const navLinks = document.getElementById('navLinks');
+      navLinks.classList.toggle('active');
+    }
+
+    // Inicializar ao carregar a página
+    initializeData();
+  </script>
+</body>
+</html>
